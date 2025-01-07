@@ -1,0 +1,14 @@
+﻿{
+  "ID": "cc29f001-f973-446e-a041-bbeceeb42f57", // GUID string
+  "ActionKeyword": "*", // Direct activation phrase
+  "IsGlobal": true,
+  "Name": "Bitwarden", // Has to be unique, same as 'PluginName' in the project name pattern  
+  "Author": "yuiidev",
+  "Version": "1.0.0", // For future compatibility
+  "Language": "csharp", // So far we support only csharp 
+  "Website": "https://github.com/yuiidev/bitwarden-search",
+  "ExecuteFileName": "Community.PowerToys.Run.Plugin.Bitwarden.dll", // Should be {Type}.PowerToys.Run.Plugin.{PluginName}.dll
+  "IcoPathDark": "ico-dark.png", // Path to dark theme icon. The path is relative to the root plugin folder 
+  "IcoPathLight": "ico-light.png", // Path to light theme icon. The path is relative to the root plugin folder
+  "DynamicLoading": false // Sets whether the plugin should dynamically load any dependencies isolated from the core application.  
+}
