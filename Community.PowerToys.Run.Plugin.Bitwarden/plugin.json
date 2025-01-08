@@ -1,0 +1,14 @@
+﻿{
+  "ID": "CC29F001F973446EA041BBECEEB42F57",
+  "ActionKeyword": "bw",
+  "IsGlobal": false,
+  "Name": "Bitwarden",
+  "Author": "yuiidev",
+  "Version": "1.0.0",
+  "Language": "csharp",
+  "Website": "https://github.com/yuiidev/bitwarden-search",
+  "ExecuteFileName": "Community.PowerToys.Run.Plugin.Bitwarden.dll",
+  "IcoPathDark": "Images\\ico-dark.png",
+  "IcoPathLight": "Images\\ico-light.png",
+  "DynamicLoading": false
+}
