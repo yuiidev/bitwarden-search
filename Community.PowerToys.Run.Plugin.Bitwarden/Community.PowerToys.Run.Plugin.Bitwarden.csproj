@@ -31,4 +31,8 @@
         </None>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\BitwardenClient\YuiiDev.Bitwarden.csproj" />
+    </ItemGroup>
+
 </Project>

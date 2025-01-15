@@ -4,6 +4,7 @@ using Wox.Plugin;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Wox.Plugin.Logger;
+using YuiiDev.Bitwarden;
 
 namespace Community.PowerToys.Run.Plugin.Bitwarden;
 

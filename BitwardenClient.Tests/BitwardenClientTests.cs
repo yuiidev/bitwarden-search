@@ -1,6 +1,4 @@
-﻿using Community.PowerToys.Run.Plugin.Bitwarden;
-
-namespace Tests;
+﻿namespace YuiiDev.Bitwarden.Tests;
 
 [TestClass]
 public sealed class BitwardenClientTests
@@ -24,11 +22,22 @@ public sealed class BitwardenClientTests
     {
         var client = new BitwardenClient();
 
-        var valid = client.VerifySettings(ClientIdPath, ClientSecretPath, MasterPasswordPath);
-        Assert.IsTrue(valid);
+        client.VerifySettings(ClientIdPath, ClientSecretPath, MasterPasswordPath);
         
         var actual = await client.Login();
+        
         Assert.IsTrue(actual);
+    }
+
+    [TestMethod]
+    public async Task StartStop_Client_IsSuccess()
+    {
+        var client = new BitwardenClient();
+        
+        client.VerifySettings(ClientIdPath, ClientSecretPath, MasterPasswordPath);
+        await client.Login();
+        client.Start();
+        client.Stop();
     }
 
     [TestMethod]
@@ -36,12 +45,14 @@ public sealed class BitwardenClientTests
     {
         var client = new BitwardenClient();
         
-        var valid = client.VerifySettings(ClientIdPath, ClientSecretPath, MasterPasswordPath);
-
-        var loggedIn = await client.Login();
+        client.VerifySettings(ClientIdPath, ClientSecretPath, MasterPasswordPath);
+        await client.Login();
+        client.Start();
         
         var actual = await client.Unlock();
         Assert.IsTrue(actual);
+        
+        client.Stop();
     }
 
     [TestMethod]
@@ -51,9 +62,28 @@ public sealed class BitwardenClientTests
         
         client.VerifySettings(ClientIdPath, ClientSecretPath, MasterPasswordPath);
         await client.Login();
+        client.Start();
         await client.Unlock();
+        
+        var response = await client.Query("github");
+        client.Stop();
+        
+        Assert.IsFalse(response?.IsEmpty);
+        Assert.IsTrue(response?.Success);
+    }
 
-        await client.Query("");
-        Assert.IsTrue(true);
+    [TestMethod]
+    public async Task Sync_Client_IsSuccess()
+    {
+        var client = new BitwardenClient();
+        
+        client.VerifySettings(ClientIdPath, ClientSecretPath, MasterPasswordPath);
+        await client.Login();
+        client.Start();
+        var actual = await client.Sync();
+        client.Stop();
+        
+        Assert.IsTrue(actual);
+        
     }
 }

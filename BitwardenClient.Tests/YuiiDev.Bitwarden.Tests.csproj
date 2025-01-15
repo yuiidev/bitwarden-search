@@ -18,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Community.PowerToys.Run.Plugin.Bitwarden\Community.PowerToys.Run.Plugin.Bitwarden.csproj" />
+      <ProjectReference Include="..\BitwardenClient\YuiiDev.Bitwarden.csproj" />
     </ItemGroup>
 
 </Project>

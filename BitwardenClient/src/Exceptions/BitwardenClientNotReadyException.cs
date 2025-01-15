@@ -1,4 +1,4 @@
-﻿namespace Community.PowerToys.Run.Plugin.Bitwarden;
+﻿namespace YuiiDev.Bitwarden.Exceptions;
 
 public class BitwardenClientNotReadyException : Exception
 {

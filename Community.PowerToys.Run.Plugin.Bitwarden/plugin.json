@@ -10,5 +10,5 @@
   "ExecuteFileName": "Community.PowerToys.Run.Plugin.Bitwarden.dll",
   "IcoPathDark": "Images\\ico-dark.png",
   "IcoPathLight": "Images\\ico-light.png",
-  "DynamicLoading": false
+  "DynamicLoading": true
 }
