@@ -68,8 +68,8 @@ public sealed class BitwardenClientTests
         var response = await client.Query("github");
         client.Stop();
         
-        Assert.IsFalse(response?.IsEmpty);
-        Assert.IsTrue(response?.Success);
+        Assert.IsFalse(response.IsEmpty);
+        Assert.IsTrue(response.Success);
     }
 
     [TestMethod]

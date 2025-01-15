@@ -7,7 +7,9 @@ namespace YuiiDev.Bitwarden.VaultItemTypes;
 [JsonDerivedType(typeof(SecureNoteItem), 2)]
 [JsonDerivedType(typeof(CardItem), 3)]
 [JsonDerivedType(typeof(IdentityItem), 4)]
-public class BaseVaultItem
+public abstract class BaseVaultItem
 {
     [JsonPropertyName("name")] public string Name { get; set; }
+
+    public abstract string GetFriendlyName();
 }

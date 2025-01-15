@@ -27,4 +27,9 @@ public class IdentityItem : BaseVaultItem
         [JsonPropertyName("passportNumber")] public string DocumentNumber { get; set; }
         [JsonPropertyName("licenseNumber")] public string LicenseNumber { get; set; }
     }
+
+    public override string GetFriendlyName()
+    {
+        return "Identity";
+    }
 }

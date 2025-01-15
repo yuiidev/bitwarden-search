@@ -16,15 +16,15 @@
     <ItemGroup>
         <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting"/>
     </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\BitwardenClient\YuiiDev.Bitwarden.csproj" />
-    </ItemGroup>
     
     <ItemGroup>
         <None Include="../bw.exe">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Community.PowerToys.Run.Plugin.Bitwarden\Community.PowerToys.Run.Plugin.Bitwarden.csproj" />
     </ItemGroup>
 
 </Project>

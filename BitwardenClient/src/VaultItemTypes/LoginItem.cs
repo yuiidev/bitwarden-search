@@ -12,4 +12,9 @@ public class LoginItem : BaseVaultItem
         [JsonPropertyName("password")] public string Password { get; set; }
         [JsonPropertyName("totp")] public string MfaCode { get; set; }
     }
+
+    public override string GetFriendlyName()
+    {
+        return "Login";
+    }
 }

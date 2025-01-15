@@ -15,4 +15,9 @@ public class CardItem : BaseVaultItem
         [JsonPropertyName("expYear")] public string ExpirationYear { get; set; }
         [JsonPropertyName("code")] public string SecurityCode { get; set; }
     }
+
+    public override string GetFriendlyName()
+    {
+        return "Card";
+    }
 }

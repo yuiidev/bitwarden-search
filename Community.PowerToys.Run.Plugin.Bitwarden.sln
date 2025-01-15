@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YuiiDev.Bitwarden.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YuiiDev.Bitwarden", "BitwardenClient\YuiiDev.Bitwarden.csproj", "{0E460C6A-EF24-4746-8C50-852FEF581E01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Community.PowerToys.Run.Plugin.Bitwarden.Tests", "Community.PowerToys.Run.Plugin.Bitwarden.Tests\Community.PowerToys.Run.Plugin.Bitwarden.Tests.csproj", "{3FE29680-9CA3-45DC-BD0F-193BADC6879E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -24,5 +26,9 @@ Global
 		{0E460C6A-EF24-4746-8C50-852FEF581E01}.Debug|x64.Build.0 = Debug|Any CPU
 		{0E460C6A-EF24-4746-8C50-852FEF581E01}.Release|x64.ActiveCfg = Release|Any CPU
 		{0E460C6A-EF24-4746-8C50-852FEF581E01}.Release|x64.Build.0 = Release|Any CPU
+		{3FE29680-9CA3-45DC-BD0F-193BADC6879E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3FE29680-9CA3-45DC-BD0F-193BADC6879E}.Debug|x64.Build.0 = Debug|Any CPU
+		{3FE29680-9CA3-45DC-BD0F-193BADC6879E}.Release|x64.ActiveCfg = Release|Any CPU
+		{3FE29680-9CA3-45DC-BD0F-193BADC6879E}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

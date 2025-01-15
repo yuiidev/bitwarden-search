@@ -22,9 +22,14 @@ public class BitwardenClient
     private HttpClient _httpClient;
     private static Process? _bwServeProcess;
 
+    public event EventHandler<string> Notified; 
+    
+    public bool IsUnlocked { get; set; }
+
     public BitwardenClient(int port = 8087)
     {
         _port = port;
+        Debug.WriteLine($"Location: {Assembly.GetExecutingAssembly().Location}");
         _bitwardenCliPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\bw.exe";
         _httpClient = new()
         {
@@ -51,6 +56,7 @@ public class BitwardenClient
         _bwServeProcess.StartInfo.ArgumentList.Add("serve");
         _bwServeProcess.StartInfo.ArgumentList.Add("--port");
         _bwServeProcess.StartInfo.ArgumentList.Add(_port.ToString());
+        _bwServeProcess.StartInfo.CreateNoWindow = true;
         _bwServeProcess.Start();
     }
 
@@ -79,6 +85,7 @@ public class BitwardenClient
         process.StartInfo.ArgumentList.Add("--apikey");
         process.StartInfo.ArgumentList.Add("--nointeraction");
         process.StartInfo.ArgumentList.Add("--raw");
+        process.StartInfo.CreateNoWindow = true;
         process.StartInfo.RedirectStandardError = true;
         process.Start();
 
@@ -113,7 +120,11 @@ public class BitwardenClient
             Password = _masterPassword,
         });
 
-        return response.IsSuccessStatusCode;
+        if (!response.IsSuccessStatusCode) return false;
+        
+        IsUnlocked = true;
+        Notified?.Invoke(this, "Unlocked");
+        return true;
     }
 
     public async Task<bool> Lock()
@@ -125,7 +136,11 @@ public class BitwardenClient
 
         var response = await _httpClient.PostAsync("/lock", null);
 
-        return response.IsSuccessStatusCode;
+        if (!response.IsSuccessStatusCode) return false;
+        
+        IsUnlocked = false;
+        Notified?.Invoke(this, "Locked");
+        return true;
     }
 
     public async Task<bool> Sync()
@@ -135,16 +150,17 @@ public class BitwardenClient
         return response.IsSuccessStatusCode;
     }
 
-    public async Task<QueryResponse?> Query(string query)
+    public async Task<QueryResponse> Query(string query)
     {
         if (!_isValid || !_isLoggedIn)
         {
             throw new BitwardenClientNotReadyException();
         }
-        
-        if (!await Unlock())
+
+        if (!IsUnlocked)
         {
-            throw new BitwardenUnlockFailedException();
+            Notified?.Invoke(this, "Not yet unlocked during query");
+            return new QueryResponse();
         }
 
         // Do query
@@ -163,12 +179,7 @@ public class BitwardenClient
 
         if (!response.Success)
         {
-            return null;
-        }
-
-        if (!await Lock())
-        {
-            throw new BitwardenLockFailedException();
+            return new QueryResponse();
         }
         
         return response;
